@@ -1,7 +1,8 @@
 /*
 Ejercicio 3 - Productos
-Varias tiendas de ecommerce necesitan realizar una funcionalidad en Go para administrar productos y retornar el valor del precio total.
-Las empresas tienen 3 tipos de productos: 
+Varias tiendas de ecommerce necesitan realizar una funcionalidad en Go
+para administrar productos y retornar el valor del precio total.
+Las empresas tienen 3 tipos de productos:
 Pequeño, Mediano y Grande. (Se espera que sean muchos más)
 Existen costos adicionales por mantener el producto en el almacén de la tienda, y costos de envío.
 
@@ -11,7 +12,7 @@ Mediano: El costo del producto + un 3% por mantenerlo en existencia en el almac�
 Grande: El costo del producto + un 6%  por mantenimiento, y un costo adicional  por envío de $2500.
 
 Requerimientos:
-Crear una estructura “tienda” que guarde una lista de productos. 
+Crear una estructura “tienda” que guarde una lista de productos.
 Crear una estructura “producto” que guarde el tipo de producto, nombre y precio
 Crear una interface “Producto” que tenga el método “CalcularCosto”
 Crear una interface “Ecommerce” que tenga los métodos “Total” y “Agregar”.
@@ -27,11 +28,74 @@ Interface Ecommerce:
 
 package main
 
-import (
-	"errors"
-	"fmt"
+import "fmt"
+
+var (
+	small  = "SMALL"
+	big    = "BIG"
+	middle = "MIDDLE"
 )
 
+type tienda struct {
+	listProducts []producto
+}
+
+func (t tienda) Total() float64 {
+	var total float64
+	for _, product := range t.listProducts {
+		total += product.CalcularCosto()
+	}
+	return total
+}
+
+func (t *tienda) Agregar(p producto) {
+	t.listProducts = append(t.listProducts, p)
+}
+
+type producto struct {
+	typeProduct string
+	name        string
+	price       float64
+}
+
+func (p producto) CalcularCosto() float64 {
+	switch p.typeProduct {
+	case big:
+		return p.price + p.price*3/100
+	case middle:
+		return p.price + p.price*6/100 + 2500
+	default:
+		return p.price
+	}
+}
+
+type Producto interface {
+	CalcularCosto() float64
+}
+
+type Ecommerce interface {
+	Total() float64
+	Agregar(name string, typeProduct string, price float64)
+}
+
+func nuevoProducto(name string, typeProduct string, price float64) producto {
+	newProduct := producto{
+		name:        name,
+		typeProduct: typeProduct,
+		price:       price,
+	}
+	return newProduct
+}
+
+func nuevaTienda() tienda {
+	var newEcommerce tienda
+	return newEcommerce
+}
+
 func main() {
-	
+	newTienda := nuevaTienda()
+	newProduct := nuevoProducto("Pava", small, 15000)
+	fmt.Println(newProduct)
+	newTienda.Agregar(newProduct)
+	fmt.Println(newTienda)
 }
