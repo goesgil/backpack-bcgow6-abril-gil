@@ -35,15 +35,20 @@ func main() {
 		price:    26.5,
 		quantity: 19,
 	}
+	productThree := products{
+		id:       23440,
+		price:    1000,
+		quantity: 30,
+	}
 
 	var newListProducts listProducts
 
-	newListProducts.list = append(newListProducts.list, productOne, productTwo)
+	newListProducts.list = append(newListProducts.list, productOne, productTwo, productThree)
 
 	var listProductToString string
 
 	for _, i := range newListProducts.list {
-		listProductToString += fmt.Sprintf("%d;%d;%.2f;", i.id, i.quantity, i.price)
+		listProductToString += fmt.Sprintf("%d;%d;%.2f;\n", i.id, i.quantity, i.price)
 	}
 
 	b := []byte(listProductToString)

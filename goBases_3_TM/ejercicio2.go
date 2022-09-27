@@ -11,14 +11,28 @@ ID                            Precio  Cantidad
 434321                         50.50         1
                           4030062.50
 
- */
+*/
 
- package main
+package main
 
- import "fmt"
- 
-  func main(){
-	 fmt.Println("")
-  }
- 
- 
+import (
+	"fmt"
+	"log"
+	"os"
+	"strings"
+)
+
+func main() {
+	res, err := os.ReadFile("./listProduct.csv")
+	if err != nil {
+		log.Fatal("err")
+	}
+
+	fmt.Printf("ID \tPrecio \tCantidad\n")
+    
+	values := strings.Split(string(res), "\n")
+	for i := 0; i < len(values)-1; i++ {
+		valuesIndividual := strings.Split(values[i], ";")
+		fmt.Printf("%s \t %s \t %s\n", valuesIndividual[0], valuesIndividual[1], valuesIndividual[2])
+	}
+}
