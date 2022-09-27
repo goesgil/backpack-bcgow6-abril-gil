@@ -19,20 +19,28 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
 func main() {
 	res, err := os.ReadFile("./listProduct.csv")
 	if err != nil {
-		log.Fatal("err")
+		log.Fatal(err.Error())
 	}
 
-	fmt.Printf("ID \tPrecio \tCantidad\n")
-    
 	values := strings.Split(string(res), "\n")
+	priceTotal := 0.00
 	for i := 0; i < len(values)-1; i++ {
 		valuesIndividual := strings.Split(values[i], ";")
+		if priceToInt, err := strconv.ParseFloat(valuesIndividual[1], 64); i!=0 && err == nil {
+			priceTotal += priceToInt
+		}
+		if err != nil {
+			log.Fatal(err.Error())
+		}
+		
 		fmt.Printf("%s \t %s \t %s\n", valuesIndividual[0], valuesIndividual[1], valuesIndividual[2])
 	}
+	fmt.Printf("\t %.2f \t\n", priceTotal)
 }

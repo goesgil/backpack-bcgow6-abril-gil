@@ -27,12 +27,12 @@ func main() {
 
 	productOne := products{
 		id:       20,
-		price:    26.7,
+		price:    500.7,
 		quantity: 19,
 	}
 	productTwo := products{
 		id:       20,
-		price:    26.5,
+		price:    1200.5,
 		quantity: 19,
 	}
 	productThree := products{
@@ -45,10 +45,10 @@ func main() {
 
 	newListProducts.list = append(newListProducts.list, productOne, productTwo, productThree)
 
-	var listProductToString string
+	var listProductToString = "ID;PRICE;QUANTITY;\n"
 
 	for _, i := range newListProducts.list {
-		listProductToString += fmt.Sprintf("%d;%d;%.2f;\n", i.id, i.quantity, i.price)
+		listProductToString += fmt.Sprintf("%d;%.2f;%d;\n", i.id, i.price, i.quantity)
 	}
 
 	b := []byte(listProductToString)
@@ -58,7 +58,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	
+
 	res, err := os.ReadFile("./listProduct.csv")
 	if err != nil {
 		fmt.Println(err)
