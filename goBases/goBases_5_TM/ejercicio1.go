@@ -15,11 +15,11 @@ import (
 )
 
 func ReaderFileCustomers() {
-	_, err := os.ReadFile("./customers.txt")
+	file, err := os.ReadFile("./customers.txt")
 	if err != nil {
 		panic("el archivo indicado no fue encontrado o está dañado")
 	}
-	fmt.Println("Ok")
+	fmt.Println(string(file))
 }
 
 func main() {
