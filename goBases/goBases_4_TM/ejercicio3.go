@@ -6,11 +6,27 @@ Repite el proceso anterior, pero ahora implementando “fmt.Errorf()”, para qu
 package main
 
 import (
-	//"errors"
 	"fmt"
 )
 
+type NewError struct{}
+
+func (e *NewError) NewError(salary int) error {
+	return fmt.Errorf("error: el salario ingresado no alcanza el mínimo imponible, el mínimo imponible es de 150.000 y el salario ingresado es de: %v ", salary)
+}
+
+func ApplyImpuestBySalary(salary int) {
+	var newErrorGenerated *NewError
+	if salary < 150000 {
+		fmt.Println(newErrorGenerated.NewError(salary))
+	} else {
+		fmt.Println("Debe pagar impuesto")
+	}
+}
+
 func main() {
-	fmt.Println("")
-	//errors.As()
+	salary := 30000
+	ApplyImpuestBySalary(salary)
+	salary = 230000
+	ApplyImpuestBySalary(salary)
 }

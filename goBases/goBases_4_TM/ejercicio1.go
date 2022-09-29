@@ -31,3 +31,19 @@ func main() {
 	salary = 230000
 	fmt.Println(ApplyImpuestBySalary(salary))
 }
+/*type MyError struct{}
+
+func (e *MyError) Error() string {
+	return "error: el salario ingresado no alcanza el mínimo imponible"
+}
+
+func main() {
+	mError := &MyError{}
+	var salary int = 200000
+	if salary < 150000 {
+		fmt.Println(mError.Error())
+	} else {
+		fmt.Println("Debe pagar impuesto.")
+	}
+}
+*/
