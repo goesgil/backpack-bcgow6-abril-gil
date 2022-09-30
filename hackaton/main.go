@@ -55,11 +55,11 @@ func main() {
 	}
 	fmt.Println(ticketGet,"ticketGet")
 
-	ticketDeleted , err := bookings.Delete(1001)
+	ticketDeleted , err := bookings.Delete(6)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(ticketDeleted,"ticketDeleted")
+	fmt.Println(ticketDeleted,"ticketDeleted") 
 
 
 	ticketGetted , err := bookings.Read(1001)

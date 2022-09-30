@@ -55,31 +55,35 @@ func (b *bookings) Read(id int) (Ticket, error) {
 
 func (b *bookings) Update(id int, t *Ticket) (Ticket, error) {
 	newError := &customError.CustomError{}
-
-	for _, ticket := range b.Tickets {
+	index := 0
+	for indexOFTicket, ticket := range b.Tickets {
 		if id == ticket.Id {
-			ticket = *t
-			return ticket, nil
+			index = indexOFTicket
 		}
 	}
-
-	return Ticket{}, newError.BadRequest(fmt.Errorf("ticket not exist"))
+	if index == 0 {
+		return Ticket{}, newError.BadRequest(fmt.Errorf("ticket not exist"))
+	}
+	b.Tickets[index] = *t
+	b.Tickets[index].Id = id
+	return b.Tickets[index], nil
 }
 
 func (b *bookings) Delete(id int) (int, error) {
 	newError := &customError.CustomError{}
 	var idExist bool
 	var Array1 []Ticket
-	for _, t := range b.Tickets {
+	for index, t := range b.Tickets {
 		if t.Id == id {
 			idExist = true
-			Array1 = b.Tickets[887: 998]
-			Array1 = append(Array1, b.Tickets[995 : ]...)
+			Array1 = b.Tickets[:index]
+			Array1 = append(Array1, b.Tickets[index+1:]...)
 		}
 	}
 	if idExist == false {
 		return 0, newError.BadRequest(fmt.Errorf("Id not exist"))
 	}
 	b.Tickets = Array1
+	fmt.Println(b.Tickets)
 	return 1, nil
 }

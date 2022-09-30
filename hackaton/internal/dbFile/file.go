@@ -52,14 +52,20 @@ func (f *DB) Read(path *string) ([]service.Ticket, error) {
 
 func (f *DB) Write(tickets []service.Ticket) error {
 	newError := &customError.CustomError{}
+	file, err := os.Open(f.path)
+	if err != nil {
+		return newError.Detail("CANT_READING_FILE")
+	}
 	dataToCSV := ""
 	for _, t := range tickets {
 		dataToCSV += fmt.Sprintf("%v,%s,%s,%s,%s,%v\n", t.Id, t.Names, t.Email, t.Destination, t.Date, t.Price)
 	}
-	err := os.WriteFile(f.path, []byte(dataToCSV), 777)
+	byte, err := file.Write([]byte(dataToCSV))
+
 	if err != nil {
 		return newError.Detail("CANT_WRITE_FILE")
 	}
+	fmt.Println(byte)
 	return nil
 }
 
