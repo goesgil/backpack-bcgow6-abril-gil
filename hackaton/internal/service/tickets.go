@@ -66,6 +66,7 @@ func (b *bookings) Update(id int, t *Ticket) (Ticket, error) {
 	}
 	b.Tickets[index] = *t
 	b.Tickets[index].Id = id
+
 	return b.Tickets[index], nil
 }
 

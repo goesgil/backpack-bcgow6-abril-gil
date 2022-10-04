@@ -21,13 +21,13 @@ func main() {
 		Destination: "Alaska",
 		Email: "abril@example.com",
 	}
-	updateTicket := service.Ticket{
+	/* updateTicket := service.Ticket{
 		Price: 2500,
 		Names: "Abril Gil",
 		Date: "00:00",
 		Destination: "Alaska",
 		Email: "abril@example.com",
-	}
+	} */
 
 	// Funcion para obtener tickets del archivo csv
 	fileWithTickets := &db.DB{}
@@ -41,31 +41,34 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	fileWithTickets.Update(ticketCreated)
 	fmt.Println(ticketCreated,"ticketCreated")
 
-	ticketUpdated, err := bookings.Update(1001, &updateTicket)
+
+	/* ticketUpdated, err := bookings.Update(1001, &updateTicket)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(ticketUpdated,"ticketUpdated")
-
+	fmt.Println(ticketUpdated,"ticketUpdated") 
+	
 	ticketGet , err := bookings.Read(1001)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println(ticketGet,"ticketGet")
-
+	
 	ticketDeleted , err := bookings.Delete(6)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(ticketDeleted,"ticketDeleted") 
-
-
+	fmt.Println(ticketDeleted,"ticketDeleted")  
+	
+	
 	ticketGetted , err := bookings.Read(1001)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Println(ticketGetted,"ticketGetted")
-
+	*/
+	
 }
