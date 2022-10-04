@@ -13,7 +13,7 @@ package main
 
 import "fmt"
 
-func main() {
+func ejercicio4() {
 	var edad int = 35
 	var boolean bool = false
 	var sueldo float64 = 45857.90

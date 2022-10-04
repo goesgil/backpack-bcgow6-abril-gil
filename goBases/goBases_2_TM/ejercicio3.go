@@ -48,7 +48,7 @@ func salaryByEmployee(minutes int, category string) (float64, error) {
 	}
 }
 
-func main() {
+func ejercicio3() {
 	// Try the next lines
 	// res, err := salaryByEmployee(9600, categoryB) // lun a vie 8hs = 9600 minutes
 	// res, err := salaryByEmployee(3940, "D")

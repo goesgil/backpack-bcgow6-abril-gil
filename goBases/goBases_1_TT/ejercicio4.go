@@ -22,7 +22,7 @@ package main
 
 import "fmt"
 
-func main() {
+func ejercicio4() {
 	var employees = map[string]int{
 		"Benjamin": 20,
 		"Nahuel":   26,

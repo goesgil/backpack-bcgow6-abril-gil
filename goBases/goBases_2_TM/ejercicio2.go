@@ -23,7 +23,7 @@ func promedioPorAlumno(calificaciones ...int) (int, error) {
 	return total / len(calificaciones), nil
 }
 
- func main(){
+ func ejercicio2(){
 	 res, err := promedioPorAlumno(5,7,3,7,7,8,9,-8,10,10)
 	 if (err != nil) {
 		 fmt.Println(err)

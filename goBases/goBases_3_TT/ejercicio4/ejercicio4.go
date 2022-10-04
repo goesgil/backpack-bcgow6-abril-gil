@@ -35,6 +35,6 @@ package main
 
 import "fmt"
 
-func main() {
+func ejercicio4() {
 	fmt.Println("")
 }

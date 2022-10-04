@@ -37,7 +37,7 @@ func (m Matrix) Print() {
 	fmt.Printf("Es cuadratica: %v\n", m.IsCuadratic)
 }
 
-func main() {
+func ejercicio2() {
 	var newMatric Matrix
 	newMatric.Set(
 		13.5,

@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	"github.com/goesgil/backpack-bcgow6-abril-gil/goWeb/MockTrxs"
+	"github.com/goesgil/backpack-bcgow6-abril-gil/goWeb/goWeb_1/MockTrxs"
 )
 
 func ValidateQuerys(ctx *gin.Context, Key string, ValueToMatch string) bool {

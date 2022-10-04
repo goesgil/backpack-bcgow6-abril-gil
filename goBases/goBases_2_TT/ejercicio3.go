@@ -92,7 +92,7 @@ func nuevaTienda() tienda {
 	return newEcommerce
 }
 
-func main() {
+func ejercicio3() {
 	newTienda := nuevaTienda()
 	newProduct := nuevoProducto("Pava", small, 15000)
 	fmt.Println(newProduct)

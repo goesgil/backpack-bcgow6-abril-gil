@@ -22,7 +22,7 @@ func ReaderFileCustomers() {
 	fmt.Println(string(file))
 }
 
-func main() {
+func ejercicio1() {
 	defer func() {
 		fmt.Println("ejecución finalizada")
 	}()

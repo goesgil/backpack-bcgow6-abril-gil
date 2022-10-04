@@ -27,13 +27,8 @@ func (p *product) CreateProduct(name string, price float64) product {
 	return *p
 }
 
-type Product interface {
-	CreateProduct(name string, price float64)
-}
-
-type User interface {
-	AddProducts()
-	DeleteProducts()
+func newProduc() product {
+	return product{}
 }
 
 type user struct {
@@ -52,21 +47,31 @@ func (u *user) DeleteProducts(newUser user) {
 	u.Products = []product{}
 }
 
-func AddProducts(u *user, p *product, quantity int) {
-	u.AddProducts(p, quantity)
+func (u *user) CreateUser(givenName, familyName string) {
+	u.GivenName = givenName
+	u.FamilyName = familyName
 }
 
-func main() {
-	newUser := user{
-		GivenName:  "Abril",
-		FamilyName: "Gil",
-	}
-	productOne := product{
-		name:  "Pava",
-		price: 500.7,
-	}
-	fmt.Println(newUser)
-	AddProducts(&newUser, &productOne, 4)
-	fmt.Println((newUser))
 
+func newUser() user {
+	return user{}
+}
+
+type Product interface {
+	CreateProduct(name string, price float64)
+}
+
+type User interface {
+	AddProducts()
+	DeleteProducts()
+}
+
+func ejercicio2() {
+	user1 := newUser()
+	user1.CreateUser("Abril", "Gil")
+	productOne := newProduc()
+	productOne.CreateProduct("Laptop", 1000)
+	fmt.Println(user1)
+	user1.AddProducts(&productOne, 4)
+	fmt.Println((user1))
 }

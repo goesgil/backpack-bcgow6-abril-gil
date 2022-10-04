@@ -6,7 +6,7 @@ package main
 
 import "fmt"
 
-func main() {
+func ejercicio2() {
 	var temperatura float64 = 32.6
 	var humedad int = 80
 	var presion int = 102

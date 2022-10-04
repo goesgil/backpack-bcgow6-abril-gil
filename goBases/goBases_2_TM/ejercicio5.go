@@ -59,7 +59,7 @@ func FindAlimentByAnimal(typeAnimal string, quantityAnimal int) (quantityFood fl
 		return 0, errors.New("this animal not found")
 	}
 }
-func main() {
+func ejercicio5() {
 	res, err := FindAlimentByAnimal(SpiderAnimal, 3)
 	if err != nil {
 		fmt.Println(err)

@@ -34,7 +34,7 @@ func (a alumno) Detalle() {
 	fmt.Println("DNI: " + strconv.Itoa(a.DNI))
 	fmt.Println("Fecha: " + a.Fecha)
 }
-func main() {
+func ejercicio1() {
 	alumno1 := alumno{
 		Nombre:   "Leo",
 		Apellido: "Dicaprio",

@@ -36,7 +36,7 @@ func (users *user) ChangePassword(newPassword string) {
 	users.password = newPassword
 }
 
-func main() {
+func ejercicio1() {
      newUser := user{
         GivenName: "Abril",
         FamilyName: "Gil",

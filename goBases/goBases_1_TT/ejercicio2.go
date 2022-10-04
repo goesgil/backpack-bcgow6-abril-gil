@@ -17,7 +17,7 @@ package main
 
 import "fmt"
 
-func main() {
+func ejercicio2() {
 	edad := 34
 	isEmployed := true
 	antiguedad := 2

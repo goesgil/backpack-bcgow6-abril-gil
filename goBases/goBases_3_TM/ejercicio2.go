@@ -23,7 +23,7 @@ import (
 	"strings"
 )
 
-func main() {
+func ejercicio2() {
 	res, err := os.ReadFile("./listProduct.csv")
 	if err != nil {
 		log.Fatal(err.Error())

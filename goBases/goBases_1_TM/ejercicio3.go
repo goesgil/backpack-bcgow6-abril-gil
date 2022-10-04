@@ -19,7 +19,7 @@ package main
 
 import "fmt"
 
-func main() {
+func ejercicio3() {
 	var nombre string
 	var edad int
 	var apellido = "6"

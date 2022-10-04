@@ -11,7 +11,7 @@ package main
 
 import "fmt"
 
-func main() {
+func ejercicio1() {
 	word := "Constantinopla"
 
 	fmt.Println(len(word))

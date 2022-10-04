@@ -69,7 +69,7 @@ func CalculateCalificationsByType(califications []int, typeCalculate string) (re
 	}
 }
 
-func main() {
+func ejercicio4() {
 	calificationsStudent1 := []int{4, 6, 7, 9, 8, 9, 10, 9}
 	res, err := CalculateCalificationsByType(calificationsStudent1, CalculatePromedy)
 	if err != nil {

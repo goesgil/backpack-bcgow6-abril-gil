@@ -21,7 +21,7 @@ Los 3 se deben ejecutar concurrentemente y al final se debe mostrar por pantalla
 
  import "fmt"
  
-  func main(){
+  func ejercicio3(){
 	 fmt.Println("")
   }
  

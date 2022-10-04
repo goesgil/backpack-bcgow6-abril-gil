@@ -17,7 +17,7 @@ func impuestoSalarial(salario float64)float64 {
 	}
 }
 
- func main(){
+ func ejercicio1(){
 	fmt.Println(impuestoSalarial(35000))
 	fmt.Println(impuestoSalarial(200000.60))
  }

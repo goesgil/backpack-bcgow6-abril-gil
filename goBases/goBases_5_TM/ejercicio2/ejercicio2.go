@@ -105,7 +105,7 @@ func ValidateRequest(
 	return nil
 }
 
-func main() {
+func ejercicio2() {
 	defer func() {
 		if err := recover(); err != nil {
 			fmt.Println("Se detectaron varios errores en tiempo de ejecución")

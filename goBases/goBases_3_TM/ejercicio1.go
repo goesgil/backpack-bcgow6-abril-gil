@@ -23,7 +23,7 @@ type listProducts struct {
 	list []products
 }
 
-func main() {
+func ejercicio1() {
 
 	productOne := products{
 		id:       20,

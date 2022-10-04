@@ -13,7 +13,7 @@ package main
 
 import "fmt"
 
-func main() {
+func ejercicio3() {
 	month := 3
 	var months = map[int]string{
 		1:  "Enero",
