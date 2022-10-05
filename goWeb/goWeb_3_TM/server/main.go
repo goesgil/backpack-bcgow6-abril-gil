@@ -7,6 +7,10 @@ import (
 )
 
 func main() {
+	// Generate mock data
+	internal.GenerateMock()
+
+	// Started task
 	repo := internal.NewRepository()
 	service := internal.NewService(repo)
 	controller := handler.NewController(service)
@@ -20,6 +24,5 @@ func main() {
 		groupTrxs.PUT("/:id", controller.Put)
 		groupTrxs.DELETE("/:id", controller.Delete)
 	}
-
 	router.Run()
 }

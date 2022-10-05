@@ -48,7 +48,7 @@ func (c *controller) Put(ctx *gin.Context) {
 	err = c.service.Put(body.Amount, id, body.CodeTrxs, body.Coin, body.Transmitter)
 	if err != nil {
 		ctx.JSON(http.StatusNotFound, gin.H{
-			"message": "Error",
+			"message": err.Error(),
 		})
 		return
 	}
@@ -81,7 +81,7 @@ func (c *controller) Patch(ctx *gin.Context) {
 	err = c.service.Patch(body.Amount, id, body.CodeTrxs)
 	if err != nil {
 		ctx.JSON(http.StatusNotFound, gin.H{
-			"message": "Transaction does not exist",
+			"message": err.Error(),
 		})
 		return
 	}
@@ -95,14 +95,14 @@ func (c *controller) Delete(ctx *gin.Context) {
 	id, err := strconv.Atoi(ctx.Params.ByName("id"))
 	if err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{
-			"message": "Error in params, the id must be integer",
+			"message": "Error in params, the id must be number integer",
 		})
 		return
 	}
 	err = c.service.Delete(id)
 	if err != nil {
 		ctx.JSON(http.StatusNotFound, gin.H{
-			"message": "Error",
+			"message": err.Error(),
 		})
 		return
 	}
