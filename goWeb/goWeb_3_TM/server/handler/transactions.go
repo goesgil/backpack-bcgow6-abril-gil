@@ -52,10 +52,7 @@ func (c *controller) Put(ctx *gin.Context) {
 		})
 		return
 	}
-	ctx.AbortWithStatus(http.StatusNoContent)
-	ctx.JSON(http.StatusNoContent, gin.H{
-		"message": "Transaction updated",
-	})
+	ctx.Writer.WriteHeader(http.StatusNoContent)
 	return
 }
 
@@ -85,9 +82,7 @@ func (c *controller) Patch(ctx *gin.Context) {
 		})
 		return
 	}
-	ctx.JSON(http.StatusNoContent, gin.H{
-		"message": "Transaction updated",
-	})
+	ctx.Writer.WriteHeader(http.StatusNoContent)
 	return
 }
 
@@ -106,8 +101,6 @@ func (c *controller) Delete(ctx *gin.Context) {
 		})
 		return
 	}
-	ctx.JSON(http.StatusNoContent, gin.H{
-		"message": "Transaction deleted",
-	})
+	ctx.Writer.WriteHeader(http.StatusNoContent)
 	return
 }
