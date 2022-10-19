@@ -1,6 +1,6 @@
-# GO WEB CLASE 2
+# **GO WEB** CLASE 2
 
-## Ejercicio 1 - Crear Entidad
+## **Ejercicio 1 - Crear Entidad**
 Se debe implementar la funcionalidad para crear la entidad. pasa eso se deben seguir los
 siguientes pasos:
 1. Crea un endpoint mediante POST el cual reciba la entidad.
@@ -10,7 +10,7 @@ deberán ir guardando todas las peticiones que se vayan realizando.
 buscar el ID del último registro generado, incrementarlo en 1 y asignarlo a nuestro
 nuevo registro (sin tener una variable de último ID a nivel global).
 
-##  Ejercicio 2 - Validación de campos
+## **Ejercicio 2 - Validación de campos**
 Se debe implementar las validaciones de los campos al momento de enviar la petición, para
 eso se deben seguir los siguientes pasos:
 1. Se debe validar todos los campos enviados en la petición, todos los campos son

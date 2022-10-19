@@ -1,7 +1,6 @@
 package db
 
 import (
-	"encoding/json"
 	"fmt"
 	"os"
 	"time"
@@ -21,20 +20,15 @@ type Transaction struct {
 }
 
 func NewDB() []Transaction {
-	return []Transaction{}
+	return DB
 }
 
 func Writer(db []Transaction) error {
-	bt, err := json.Marshal(db)
+	file, err := os.OpenFile("./trxs.json", os.O_RDWR|os.O_CREATE, 777)
 	if err != nil {
 		return err
 	}
-	_, err = os.OpenFile("./transactions.json", os.O_RDWR|os.O_CREATE, 777)
-	err = os.WriteFile("file", bt, 777)
-	if err != nil {
-		return err
-	}
-	return nil
+	return transformTransactionToJson(db, file)
 }
 
 func GenerateMock() error {
@@ -52,15 +46,32 @@ func GenerateMock() error {
 		})
 	}
 
-	file, err := os.Create("./transactions.json")
+	file, err := os.Create("./trxs.json")
 	if err != nil {
 		return err
 	}
-	dbToJson, err := json.Marshal(DB)
+	return transformTransactionToJson(DB, file)
+}
+
+func transformTransactionToJson(t []Transaction, file *os.File) error {
+	_, err := file.Write([]byte(fmt.Sprintf("[\n")))
 	if err != nil {
 		return err
 	}
-	_, err = file.Write(dbToJson)
+	for i, v := range t {
+		if i < len(t)-1 {
+			_, err = file.Write([]byte(fmt.Sprintf("\t{\n\t\t\"id\": %d,\n \t\t\"codeTrxs\": \"%s\",\n \t\t\"coin\": \"%s\",\n \t\t\"amount\": %f,\n \t\t\"transmitter\": \"%s\",\n \t\t\"created_at\": \"%s\"\n\t},\n", v.Id, v.CodeTrxs, v.Coin, v.Amount, v.Transmitter, v.Created_at)))
+			if err != nil {
+				return err
+			}
+		} else {
+			_, err = file.Write([]byte(fmt.Sprintf("\t{\n\t\t\"id\": %d,\n \t\t\"codeTrxs\": \"%s\",\n \t\t\"coin\": \"%s\",\n \t\t\"amount\": %f,\n \t\t\"transmitter\": \"%s\",\n \t\t\"created_at\": \"%s\"\n\t}\n", v.Id, v.CodeTrxs, v.Coin, v.Amount, v.Transmitter, v.Created_at)))
+			if err != nil {
+				return err
+			}
+		}
+	}
+	_, err = file.Write([]byte(fmt.Sprintf("]")))
 	if err != nil {
 		return err
 	}

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -23,6 +24,7 @@ func ValidateSession(c *gin.Context) {
 	if token := c.GetHeader("Authorization"); token == "" || strings.Split(token, " ")[1] != "123456" {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "no tiene permisos para realizar la petición solicitada"})
 	}
+	fmt.Print("http")
 	c.Next()
 }
 
@@ -30,7 +32,6 @@ func handleFunc(c *gin.Context) {
 	var req TransactionsRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
 	}
 	req.Id = len(transactions) + 1
 	transactions = append(transactions, req)

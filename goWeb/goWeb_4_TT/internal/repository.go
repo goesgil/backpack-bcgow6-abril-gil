@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/goesgil/backpack-bcgow6-abril-gil/goWeb/goWeb_4_TM/pkg/db"
+	"github.com/goesgil/backpack-bcgow6-abril-gil/goWeb/goWeb_4_TT/pkg/db"
 )
 
 type Trxs interface {

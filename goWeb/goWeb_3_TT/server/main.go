@@ -1,19 +1,13 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/gin-gonic/gin"
-	"github.com/goesgil/backpack-bcgow6-abril-gil/goWeb/goWeb_4_TM/internal"
-	"github.com/goesgil/backpack-bcgow6-abril-gil/goWeb/goWeb_4_TM/pkg/db"
-	"github.com/goesgil/backpack-bcgow6-abril-gil/goWeb/goWeb_4_TM/server/handler"
+	"github.com/goesgil/backpack-bcgow6-abril-gil/goWeb/goWeb_3_TT/internal"
+	"github.com/goesgil/backpack-bcgow6-abril-gil/goWeb/goWeb_3_TT/server/handler"
+	"github.com/goesgil/backpack-bcgow6-abril-gil/goWeb/goWeb_3_TT/pkg/db"
 )
 
 func main() {
-	err := db.GenerateMock()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
 	db := db.NewDB()
 	repo := internal.NewRepository(db)
 	service := internal.NewService(repo)
@@ -21,7 +15,7 @@ func main() {
 
 	router := gin.Default()
 
-	groupV1 := router.Group("/api/v1")
+	groupV1 := router.Group("/v1")
 	groupTrxs := groupV1.Group("/transactions")
 	{
 		groupTrxs.POST("/", controller.Create)
