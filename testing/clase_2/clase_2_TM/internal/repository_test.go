@@ -8,8 +8,40 @@ Para esto:
 
 package internal
 
-func stubGetAll() {
+import (
+	"fmt"
+	"testing"
 
+	"github.com/goesgil/backpack-bcgow6-abril-gil/testing/clase_2/clase_2_TM/pkg/db"
+	"github.com/stretchr/testify/assert"
+)
+
+type StubDB struct{}
+
+func (d StubDB) BuscarPorNombre(nombre string) string {
+	return "12345678"
+}
+
+func TestGetAll(t *testing.T) {
+	// Arrange
+
+	myStubDB := []db.Transaction{}
+	trxs := db.Transaction{
+		Id:          1,
+		CodeTrxs:    fmt.Sprintf("code-trxs-%d", 1),
+		Coin:        "BTC",
+		Amount:      500,
+		Transmitter: fmt.Sprintf("transmitter-uuid-user-%d", 1),
+		Created_at:  "2006-11-02 15:04:05",
+	}
+	myStubDB = append(myStubDB, trxs)
+	motor := NewRepository(myStubDB)
+
+	// Act
+	resultado := motor.GetAll()
+
+	// Assert
+	assert.Equal(t, myStubDB, resultado)
 }
 
 /*
