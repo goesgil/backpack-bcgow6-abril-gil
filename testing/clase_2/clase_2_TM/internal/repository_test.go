@@ -16,15 +16,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-type StubDB struct{}
-
-func (d StubDB) BuscarPorNombre(nombre string) string {
-	return "12345678"
-}
-
 func TestGetAll(t *testing.T) {
 	// Arrange
-
 	myStubDB := []db.Transaction{}
 	trxs := db.Transaction{
 		Id:          1,
@@ -58,6 +51,25 @@ Para esto:
 3. Para dar el test como OK debe validarse que al invocar el método del Repository UpdateName, con el id del producto/usuario/transacción mockeado y con el nuevo nombre “After Update”, efectivamente haga la actualización. También debe validarse que el método Read haya sido ejecutado durante el test.
 */
 
-func mockUpdateName() {
+func TestPatchGood(t *testing.T) {
+	// Arrange
+	myStubDB := []db.Transaction{}
+	trxs := db.Transaction{
+		Id:          1,
+		CodeTrxs:    fmt.Sprintf("Code-New"),
+		Coin:        "BTC",
+		Amount:      500,
+		Transmitter: fmt.Sprintf("transmitter-uuid-user-%d", 1),
+		Created_at:  "2006-11-02 15:04:05",
+	}
+	myStubDB = append(myStubDB, trxs)
+	motor := NewRepository(myStubDB)
 
+	// Act
+	err := motor.Patch(500, 1, "Code_Updated")
+	result := motor.GetAll()
+
+	// Assert
+	assert.Nil(t, err)
+	assert.Equal(t, result[0].CodeTrxs, "Code_Updated")
 }

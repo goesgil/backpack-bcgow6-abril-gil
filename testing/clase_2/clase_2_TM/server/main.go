@@ -1,13 +1,12 @@
 package main
 
 import (
-	"fmt"
-	//"os"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/goesgil/backpack-bcgow6-abril-gil/testing/clase_2/clase_2_TM/internal"
 	"github.com/goesgil/backpack-bcgow6-abril-gil/testing/clase_2/clase_2_TM/pkg/db"
-	//"github.com/goesgil/backpack-bcgow6-abril-gil/testing/clase_2/clase_2_TM/docs"
+	"github.com/goesgil/backpack-bcgow6-abril-gil/testing/clase_2/clase_2_TM/docs"
 	"github.com/goesgil/backpack-bcgow6-abril-gil/testing/clase_2/clase_2_TM/server/handler"
 	"github.com/goesgil/backpack-bcgow6-abril-gil/testing/clase_2/clase_2_TM/server/middleware"
 	"github.com/joho/godotenv"
@@ -26,17 +25,13 @@ import (
 
 func main() {
 	_ = godotenv.Load()
-	err := db.GenerateMock()
-	if err != nil {
-		fmt.Println(err.Error())
-	}
 	db := db.NewDB()
 	repo := internal.NewRepository(db)
 	service := internal.NewService(repo)
 	controller := handler.NewController(service)
 	
 	router := gin.Default()
-	//docs.SwaggerInfo.Host = os.Getenv("HOST")
+	docs.SwaggerInfo.Host = os.Getenv("HOST")
 	
 	groupV1 := router.Group("/api/v1")
 	groupV1.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
